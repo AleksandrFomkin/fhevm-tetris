@@ -1,19 +1,37 @@
-# FHEVM React Template
+# 🎮 FHETetris — Fully Encrypted On-Chain Tetris
 
-A minimal React frontend template for building FHEVM-enabled decentralized applications (dApps). This template provides a simple development interface for interacting with FHEVM smart contracts, specifically the `FHECounter.sol` contract.
+> **Private, On-chain, and Playable!**  
+> FHETetris is a decentralized Tetris-style game where every score you earn is **encrypted** on-chain using **Fully Homomorphic Encryption (FHE)** — nobody (not even the contract owner) can read your scores.
 
-## 🚀 What is FHEVM?
+---
 
-FHEVM (Fully Homomorphic Encryption Virtual Machine) enables computation on encrypted data directly on Ethereum. This template demonstrates how to build dApps that can perform computations while keeping data private.
+## 🧠 Core Idea
 
-## ✨ Features
+Traditional games on blockchain store public scores — everyone can see who won.  
+**FHETetris** flips the script:
 
-- **🔐 FHEVM Integration**: Built-in support for fully homomorphic encryption
-- **⚛️ React + Next.js**: Modern, performant frontend framework
-- **🎨 Tailwind CSS**: Utility-first styling for rapid UI development
-- **🔗 RainbowKit**: Seamless wallet connection and management
-- **🌐 Multi-Network Support**: Works on both Sepolia testnet and local Hardhat node
-- **📦 Monorepo Structure**: Organized packages for SDK, contracts, and frontend
+- 🕹 Players play Tetris directly in the browser.  
+- 🔐 The final score is **encrypted off-chain** using the **FHEVM SDK**.  
+- ⛓ The ciphertext is stored on-chain via the `FHETetris` smart contract.  
+- 🧩 Only the player holding the private FHE key can decrypt their own scores.
+
+This means your game results remain **confidential**, yet still **verifiably recorded** on Ethereum.
+
+---
+
+## ⚙️ Tech Stack
+
+| Layer | Technology |
+|-------|-------------|
+| **Frontend** | Next.js 14 + React + Tailwind + Framer Motion |
+| **Smart Contract** | Solidity 0.8.24 |
+| **FHE SDK** | `@fhevm/solidity`, `@fhevm-sdk`, `@fhevm/hardhat-plugin` |
+| **Wallet & Chain** | Wagmi + RainbowKit |
+| **Test Framework** | Hardhat + Chai + Mocha |
+| **Chain Config** | Zama’s SepoliaConfig for FHE integration |
+
+---
+
 
 ## 📋 Prerequinextjss
 
@@ -31,7 +49,7 @@ Before you begin, ensure you have:
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd fhevm-react-template
+cd fhevm-tetris
 
 # Initialize submodules (includes fhevm-hardhat-template)
 git submodule update --init --recursive
@@ -134,8 +152,8 @@ fhevm-react-template/
 
 ### Key Components
 
-#### 🔗 FHEVM Integration (`packages/nextjs/hooks/fhecounter-example/`)
-- **`useFHECounterWagmi.tsx`**: Example hook demonstrating FHEVM contract interaction
+#### 🔗 FHEVM Integration (`packages/nextjs/hooks`)
+- **`useFHETetris.tsx`**: Example hook demonstrating FHEVM contract interaction
 - Essential hooks for FHEVM-enabled smart contract communication
 - Easily copyable to any FHEVM + React project
 
