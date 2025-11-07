@@ -1,17 +1,20 @@
-import { DeployFunction } from "hardhat-deploy/types";
-import { HardhatRuntimeEnvironment } from "hardhat/types";
+import { ethers } from "hardhat";
 
-const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
-  const { deployer } = await hre.getNamedAccounts();
-  const { deploy } = hre.deployments;
+async function main() {
+  const signers = await ethers.getSigners();
+  const randomDeployer = signers[Math.floor(Math.random() * signers.length)];
 
-  const deployedFHECounter = await deploy("FHECounter", {
-    from: deployer,
-    log: true,
-  });
+  console.log(`Deploying FHETetris with account: ${randomDeployer.address}`);
 
-  console.log(`FHECounter contract: `, deployedFHECounter.address);
-};
-export default func;
-func.id = "deploy_fheCounter"; // id required to prevent reexecution
-func.tags = ["FHECounter"];
+  const FHETetris = await ethers.getContractFactory("FHETetris");
+  const contract = await FHETetris.connect(randomDeployer).deploy();
+
+  await contract.waitForDeployment();
+
+  console.log(`✅ FHETetris deployed at: ${await contract.getAddress()}`);
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
