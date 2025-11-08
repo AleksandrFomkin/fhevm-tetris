@@ -13,7 +13,7 @@ export const FHETetris = () => {
   const ethProvider = useMemo(() => (typeof window !== "undefined" ? (window as any).ethereum : undefined), []);
 
   const demoChains = {
-    31337: "http://127.0.0.1:8545",
+    11155111: `https://eth-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`,
   };
 
   const { instance: fheInstance } = useFhevm({
@@ -251,7 +251,6 @@ export const FHETetris = () => {
           <div className="relative" style={{ height: 520, width: 300 }}>
             {!started && (
               <div className="absolute inset-0 flex flex-col justify-center items-center bg-black/80 rounded-lg border border-amber-500 shadow-lg text-amber-300 z-10">
-                <div className="text-3xl mb-3 font-bold tracking-wide">🧱 FHETetris</div>
                 <button
                   onClick={() => {
                     setGameOver(false);
