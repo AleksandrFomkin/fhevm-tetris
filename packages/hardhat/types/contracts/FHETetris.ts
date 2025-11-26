@@ -22,16 +22,16 @@ import type {
 
 export interface FHETetrisInterface extends Interface {
   getFunction(
-    nameOrSignature: "fetchScores" | "protocolId" | "uploadScore"
+    nameOrSignature: "confidentialProtocolId" | "fetchScores" | "uploadScore"
   ): FunctionFragment;
 
   encodeFunctionData(
-    functionFragment: "fetchScores",
-    values: [AddressLike]
+    functionFragment: "confidentialProtocolId",
+    values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "protocolId",
-    values?: undefined
+    functionFragment: "fetchScores",
+    values: [AddressLike]
   ): string;
   encodeFunctionData(
     functionFragment: "uploadScore",
@@ -39,10 +39,13 @@ export interface FHETetrisInterface extends Interface {
   ): string;
 
   decodeFunctionResult(
+    functionFragment: "confidentialProtocolId",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "fetchScores",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "protocolId", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "uploadScore",
     data: BytesLike
@@ -92,9 +95,9 @@ export interface FHETetris extends BaseContract {
     event?: TCEvent
   ): Promise<this>;
 
-  fetchScores: TypedContractMethod<[player: AddressLike], [string[]], "view">;
+  confidentialProtocolId: TypedContractMethod<[], [bigint], "view">;
 
-  protocolId: TypedContractMethod<[], [bigint], "view">;
+  fetchScores: TypedContractMethod<[player: AddressLike], [string[]], "view">;
 
   uploadScore: TypedContractMethod<
     [encryptedScore: BytesLike, proof: BytesLike],
@@ -107,11 +110,11 @@ export interface FHETetris extends BaseContract {
   ): T;
 
   getFunction(
+    nameOrSignature: "confidentialProtocolId"
+  ): TypedContractMethod<[], [bigint], "view">;
+  getFunction(
     nameOrSignature: "fetchScores"
   ): TypedContractMethod<[player: AddressLike], [string[]], "view">;
-  getFunction(
-    nameOrSignature: "protocolId"
-  ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "uploadScore"
   ): TypedContractMethod<

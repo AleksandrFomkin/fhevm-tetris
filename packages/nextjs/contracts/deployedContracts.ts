@@ -7,8 +7,26 @@ import { GenericContractsDeclaration } from "~~/utils/helper/contract";
 const deployedContracts = {
   11155111: {
     FHETetris: {
-      address: "0xb1830b6dFC72B20A60572319ab876341FC69Ff11",
+      address: "0x7AD0f933D6799236f1194F6E480B3d0dA57e2526",
       abi: [
+        {
+          inputs: [],
+          name: "ZamaProtocolUnsupported",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "confidentialProtocolId",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
         {
           inputs: [
             {
@@ -26,78 +44,6 @@ const deployedContracts = {
             },
           ],
           stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "protocolId",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "pure",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "externalEuint32",
-              name: "encryptedScore",
-              type: "bytes32",
-            },
-            {
-              internalType: "bytes",
-              name: "proof",
-              type: "bytes",
-            },
-          ],
-          name: "uploadScore",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-      ],
-      inheritedFunctions: {},
-      deployedOnBlock: 9368216,
-    },
-  },
-  31337: {
-    FHETetris: {
-      address: "0x73511669fd4dE447feD18BB79bAFeAC93aB7F31f",
-      abi: [
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "player",
-              type: "address",
-            },
-          ],
-          name: "fetchScores",
-          outputs: [
-            {
-              internalType: "euint32[]",
-              name: "scores",
-              type: "bytes32[]",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "protocolId",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "pure",
           type: "function",
         },
         {

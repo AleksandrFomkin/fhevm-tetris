@@ -2,7 +2,7 @@
 pragma solidity ^0.8.24;
 
 import {FHE, euint32, externalEuint32} from "@fhevm/solidity/lib/FHE.sol";
-import {SepoliaConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
+import {ZamaEthereumConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
 
 /**
  * @title FHETetris
@@ -19,7 +19,7 @@ import {SepoliaConfig} from "@fhevm/solidity/config/ZamaConfig.sol";
  *      - The ciphertext is verified and stored on-chain.
  *      - Only the original sender can later decrypt and verify it.
  */
-contract FHETetris is SepoliaConfig {
+contract FHETetris is ZamaEthereumConfig {
     /// @dev Keeps encrypted Tetris scores per player address.
     mapping(address => euint32[]) private _playerScores;
 
